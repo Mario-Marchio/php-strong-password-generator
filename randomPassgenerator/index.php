@@ -8,21 +8,10 @@
 <body>
     <h1>Generatore di password casuale</h1>
       <?php
-        function generaPasswordCasuale($lunghezza) {
-        $caratteri = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[{]};:,.<>?';
-        $lunghezza_caratteri = strlen($caratteri);
-        $password = '';
+        include_once __DIR__ .  '/RandomPass.php';
 
-        for ($i = 0; $i < $lunghezza; $i++) {
-            $index = rand(0, $lunghezza_caratteri - 1);
-            $password .= $caratteri[$index];
-        }
-
-        return $password;
-    }
-
-    if (isset($_GET['lunghezza'])) {
-        $lunghezza_password = $_GET['lunghezza'];
+        if (isset($_GET['lunghezza'])) {
+            $lunghezza_password = $_GET['lunghezza'];
 
         if ($lunghezza_password > 0) {
             $password_generata = generaPasswordCasuale($lunghezza_password);
@@ -31,7 +20,7 @@
         } else {
             echo "<div>Nessun parametro valido inserito</div>";
         }
-    }
+        }
     ?>
 
     <form action="" method="get">
