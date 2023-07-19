@@ -8,6 +8,7 @@
 <body>
     <h1>Generatore di password casuale</h1>
       <?php
+        session_start();
         include_once __DIR__ .  '/RandomPass.php';
 
         if (isset($_GET['lunghezza'])) {
@@ -15,8 +16,9 @@
 
         if ($lunghezza_password > 0) {
             $password_generata = generaPasswordCasuale($lunghezza_password);
-            echo "<div>La tua password casuale di lunghezza $lunghezza_password è:</div>";
-            echo "<div>$password_generata</div>";
+            
+            $_SESSION['generated_password'] = $password_generata;
+            header('Location: mostraPassword.php');
         } else {
             echo "<div>Nessun parametro valido inserito</div>";
         }
